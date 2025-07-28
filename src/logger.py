@@ -1,6 +1,8 @@
 import logging
 import os
 from datetime import datetime
+from src.logger import CustomException
+import sys
 
 LOG_FILE=f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 logs_path=os.path.join(os.getcwd(),"logs",LOG_FILE)
@@ -15,5 +17,11 @@ logging.basicConfig(
 
 )
 
+if __name__=="__main__":
+      try:
+            a=1/0
+      except Exception as e:
 
+            logging.info("logging has started")
+            raise CustomException(e,sys)
             
